@@ -1,0 +1,310 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0A996AC618A80659007EC27F /* SSDT-9.dsl in Resources */ = {isa = PBXBuildFile; fileRef = 0A996AC518A80659007EC27F /* SSDT-9.dsl */; };
+		0A996AC918A806B8007EC27F /* BacklightCommander.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A996AC718A806B8007EC27F /* BacklightCommander.cpp */; };
+		0A996ACA18A806B8007EC27F /* BacklightCommander.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A996AC818A806B8007EC27F /* BacklightCommander.h */; };
+		0A996ACE18A806F9007EC27F /* BacklightCommander-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 0A996ACC18A806F9007EC27F /* BacklightCommander-Prefix.pch */; };
+		0A996AD418A8106F007EC27F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A996AD118A8103F007EC27F /* InfoPlist.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0A996AC518A80659007EC27F /* SSDT-9.dsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "SSDT-9.dsl"; path = "SSDT/SSDT-9.dsl"; sourceTree = "<group>"; };
+		0A996AC718A806B8007EC27F /* BacklightCommander.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BacklightCommander.cpp; path = BacklightCommander/BacklightCommander.cpp; sourceTree = SOURCE_ROOT; };
+		0A996AC818A806B8007EC27F /* BacklightCommander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BacklightCommander.h; path = BacklightCommander/BacklightCommander.h; sourceTree = SOURCE_ROOT; };
+		0A996ACB18A806F9007EC27F /* BacklightCommander-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "BacklightCommander-Info.plist"; path = "BacklightCommander/BacklightCommander-Info.plist"; sourceTree = SOURCE_ROOT; };
+		0A996ACC18A806F9007EC27F /* BacklightCommander-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "BacklightCommander-Prefix.pch"; path = "BacklightCommander/BacklightCommander-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		0A996AD218A8103F007EC27F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = SOURCE_ROOT; };
+		0C4B237E14598AD20080D960 /* BacklightCommander.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BacklightCommander.kext; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C4B238214598AD20080D960 /* Kernel.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kernel.framework; path = System/Library/Frameworks/Kernel.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0C4B237914598AD20080D960 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A996AC418A80626007EC27F /* SSDT Example */ = {
+			isa = PBXGroup;
+			children = (
+				0A996AC518A80659007EC27F /* SSDT-9.dsl */,
+			);
+			name = "SSDT Example";
+			sourceTree = "<group>";
+		};
+		0C4B237114598AD10080D960 = {
+			isa = PBXGroup;
+			children = (
+				0A996AC418A80626007EC27F /* SSDT Example */,
+				0C4B238314598AD20080D960 /* BacklightCommander */,
+				0C4B238014598AD20080D960 /* Frameworks */,
+				0C4B237F14598AD20080D960 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		0C4B237F14598AD20080D960 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0C4B237E14598AD20080D960 /* BacklightCommander.kext */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0C4B238014598AD20080D960 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0C4B238114598AD20080D960 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		0C4B238114598AD20080D960 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0C4B238214598AD20080D960 /* Kernel.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		0C4B238314598AD20080D960 /* BacklightCommander */ = {
+			isa = PBXGroup;
+			children = (
+				0A996AC818A806B8007EC27F /* BacklightCommander.h */,
+				0A996AC718A806B8007EC27F /* BacklightCommander.cpp */,
+				0C4B238414598AD20080D960 /* Supporting Files */,
+			);
+			name = BacklightCommander;
+			path = BacklightCommander;
+			sourceTree = "<group>";
+		};
+		0C4B238414598AD20080D960 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0A996ACB18A806F9007EC27F /* BacklightCommander-Info.plist */,
+				0A996ACC18A806F9007EC27F /* BacklightCommander-Prefix.pch */,
+				0A996AD118A8103F007EC27F /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		0C4B237A14598AD20080D960 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A996ACA18A806B8007EC27F /* BacklightCommander.h in Headers */,
+				0A996ACE18A806F9007EC27F /* BacklightCommander-Prefix.pch in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		0C4B237D14598AD20080D960 /* BacklightCommander */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C4B239014598AD20080D960 /* Build configuration list for PBXNativeTarget "BacklightCommander" */;
+			buildPhases = (
+				0C4B237814598AD20080D960 /* Sources */,
+				0C4B237914598AD20080D960 /* Frameworks */,
+				0C4B237A14598AD20080D960 /* Headers */,
+				0C4B237B14598AD20080D960 /* Resources */,
+				0C4B237C14598AD20080D960 /* Rez */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BacklightCommander;
+			productName = BacklightCommander;
+			productReference = 0C4B237E14598AD20080D960 /* BacklightCommander.kext */;
+			productType = "com.apple.product-type.kernel-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0C4B237314598AD10080D960 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+			};
+			buildConfigurationList = 0C4B237614598AD10080D960 /* Build configuration list for PBXProject "BacklightCommander" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0C4B237114598AD10080D960;
+			productRefGroup = 0C4B237F14598AD20080D960 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0C4B237D14598AD20080D960 /* BacklightCommander */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0C4B237B14598AD20080D960 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A996AD418A8106F007EC27F /* InfoPlist.strings in Resources */,
+				0A996AC618A80659007EC27F /* SSDT-9.dsl in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXRezBuildPhase section */
+		0C4B237C14598AD20080D960 /* Rez */ = {
+			isa = PBXRezBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXRezBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0C4B237814598AD20080D960 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0A996AC918A806B8007EC27F /* BacklightCommander.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		0A996AD118A8103F007EC27F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A996AD218A8103F007EC27F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0C4B238E14598AD20080D960 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_POSTPROCESSING = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"DEBUG_MSG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LLVM_LTO = NO;
+				"LLVM_LTO[arch=x86_64]" = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-fno-stack-protector";
+				"OTHER_LDFLAGS[arch=x86_64]" = "-dead_strip";
+				SDKROOT = macosx;
+				STRIP_STYLE = "non-global";
+			};
+			name = Debug;
+		};
+		0C4B238F14598AD20080D960 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_POSTPROCESSING = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LLVM_LTO = NO;
+				"LLVM_LTO[arch=x86_64]" = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				OTHER_CFLAGS = "-fno-stack-protector";
+				"OTHER_LDFLAGS[arch=x86_64]" = "-dead_strip";
+				SDKROOT = macosx;
+				STRIP_STYLE = "non-global";
+			};
+			name = Release;
+		};
+		0C4B239114598AD20080D960 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BacklightCommander/BacklightCommander-Prefix.pch";
+				INFOPLIST_FILE = "BacklightCommander/BacklightCommander-Info.plist";
+				MODULE_NAME = org.tw.driver.BacklightCommander;
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_NAME = BacklightCommander;
+				STRIP_INSTALLED_PRODUCT = YES;
+			};
+			name = Debug;
+		};
+		0C4B239214598AD20080D960 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BacklightCommander/BacklightCommander-Prefix.pch";
+				INFOPLIST_FILE = "BacklightCommander/BacklightCommander-Info.plist";
+				MODULE_NAME = org.tw.driver.BacklightCommander;
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_NAME = BacklightCommander;
+				STRIP_INSTALLED_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0C4B237614598AD10080D960 /* Build configuration list for PBXProject "BacklightCommander" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C4B238E14598AD20080D960 /* Debug */,
+				0C4B238F14598AD20080D960 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0C4B239014598AD20080D960 /* Build configuration list for PBXNativeTarget "BacklightCommander" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C4B239114598AD20080D960 /* Debug */,
+				0C4B239214598AD20080D960 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0C4B237314598AD10080D960 /* Project object */;
+}

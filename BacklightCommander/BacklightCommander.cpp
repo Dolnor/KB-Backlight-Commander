@@ -31,9 +31,7 @@ bool BacklightCommander::init(OSDictionary *dict)
         return false;
     
     DEBUG_LOG("BacklightCommander: commander initializing\n");
-    
-    enabled = false; // assume backlight is not enabled
-    
+
     acpiDevice = NULL;
     fWorkLoop = NULL;
     fTimer = NULL;
@@ -86,8 +84,12 @@ bool BacklightCommander::start(IOService *provider)
     setProperty("ACPI: Enable Backlight After",  hEnable, 32);
     setProperty("ACPI: Disable Backlight After", hDisable,32);
     
+    // sleep thread for 3 second to prevent getting incorrect levels
+    IOSleep(3000);
     // set desired timeout level
     setBacklightTimeoutLevel();
+    // now determine if backlight is enabled or disabled at start
+    getBacklightLevel();
 
     // setup workloop and timer
     fWorkLoop = IOWorkLoop::workLoop();
@@ -99,8 +101,8 @@ bool BacklightCommander::start(IOService *provider)
     if (fWorkLoop->addEventSource(fTimer) != kIOReturnSuccess)
         stop(provider);
     
-    // let ACPI device initialize, wait 1 sec before firing the timer
     fTimer->setTimeoutMS(1000);
+    DEBUG_LOG("BacklightCommander: workloop started\n");
     
 	this->registerService(0);
     return true;
@@ -147,36 +149,31 @@ void BacklightCommander::getTimeOfDay()
  ******************************************************************************/
 IOReturn BacklightCommander::onTimerAction()
 {
-    activeBacklightLevel = evaluateACPIEntry(kGetBacklightLevel); // get current backlight level
-    
-    getTimeOfDay(); // get time of day and determine if backlight should be enabled or disabled
-    if (hours >= hEnable &&
+    // get current backlight level
+    getBacklightLevel();
+   
+    // get time of day and determine if backlight should be enabled or disabled
+    // X - disable hour, Y - enable hour
+    getTimeOfDay();
+    if ((hours >= hEnable  || // if past Y:00
+        hours <  hDisable) && // or before X:00
         !enabled) {
         if (activeBacklightLevel != bLevel) // if backlight level is not already the same as we have requested
             setBacklightEnabled();
-        else {
-            enabled = true;
-            IOLog("BacklightCommander: backlight level already set to ");
-            determineBrightnessLevel(activeBacklightLevel);
-        }
     }
     
-    else if (hours >= hDisable &&
-             hours < hEnable   &&
-             enabled) {
-        if (activeBacklightLevel != 0x00) // is backlight is not already disabled
+    if (hours >= hDisable && // if past X:00
+        hours < hEnable   && // and before Y:00
+        enabled) {
+        if (activeBacklightLevel != 0x00) // if backlight is not already disabled
             setBacklightDisabled();
-        else {
-            enabled = false;
-            IOLog("BacklightCommander: backlight level already set to disabled\n");
-        }
     }
 
     if (NULL != fTimer)
     {
         fTimer->cancelTimeout();
         //fTimer->setTimeoutMS(5000);// for testing
-        fTimer->setTimeoutMS(15*60*1000); // set timer to 15min (in ms) - check 4x per hour
+        fTimer->setTimeoutMS(5*60*1000); // set timer to 5min (in ms) - check 12x per hour
     }
    
     return kIOReturnSuccess;
@@ -196,7 +193,7 @@ UInt32 BacklightCommander::evaluateACPIEntry (char *method)
             if (OSNumber  *level = OSDynamicCast(OSNumber, object)) {
                 result = (UInt32)level->unsigned32BitValue();
             }
-            // DEBUG_LOG("BacklightCommander: method %s returned value %d\n",method,result);
+            //DEBUG_LOG("BacklightCommander: method %s returned value %d\n",method,result);
             
             return result;
         }
@@ -205,15 +202,29 @@ UInt32 BacklightCommander::evaluateACPIEntry (char *method)
 }
 
 /******************************************************************************
- * BacklightCommander::setBacklightEnabled & setBacklightDisabled & setBacklightTimeoutLevel
+ * BacklightCommander::get+setBacklight & setBacklightTimeoutLevel
  ******************************************************************************/
+void BacklightCommander::getBacklightLevel()
+{
+    activeBacklightLevel = evaluateACPIEntry(kGetBacklightLevel);
+    if(activeBacklightLevel != 0x00) {
+        if (activeBacklightLevel > bLevel)
+            DEBUG_LOG("BacklightCommander: backlight level higher than requested, will not change\n");
+        enabled = true;
+    }
+    else
+        enabled = false;
+}
+
 void BacklightCommander::setBacklightEnabled()
 {
     activeBacklightLevel = evaluateACPIEntry(kEnableBacklight);
     IOLog("BacklightCommander: backlight level changed to ");
     determineBrightnessLevel(activeBacklightLevel);
+    /*
     if (activeBacklightLevel == 0x01 || activeBacklightLevel == 0x02)
         enabled = true;
+     */
 }
 
 void BacklightCommander::setBacklightDisabled()
@@ -221,8 +232,10 @@ void BacklightCommander::setBacklightDisabled()
     activeBacklightLevel = evaluateACPIEntry(kDisableBacklight);
     IOLog("BacklightCommander: backlight level changed to ");
     determineBrightnessLevel(activeBacklightLevel);
+    /*
     if (activeBacklightLevel == 0x00)
         enabled = false;
+     */
 }
 
 void BacklightCommander::setBacklightTimeoutLevel()
@@ -254,8 +267,6 @@ void BacklightCommander::determineTimeoutLevel(UInt32 timeout)
     IOLog("BacklightCommander: backlight timeout level set to ");
     switch (timeout) {
         case 0x00:
-            // sometimes at cold boot acpi method TSET returns 0,
-            // so this might be mistreated.. probably need to fix with IOSleep
             IOLog("never off\n");
             break;
         case 0x01:

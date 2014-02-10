@@ -103,6 +103,7 @@ private:
     void                    determineTimeoutLevel(UInt32 timeout);
     
     bool                    enabled;
+    void                    getBacklightLevel();
     void                    setBacklightEnabled();
     void                    setBacklightDisabled();
     void                    setBacklightTimeoutLevel();
